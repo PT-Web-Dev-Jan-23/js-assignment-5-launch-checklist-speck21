@@ -20,9 +20,9 @@ function validateInput(testInput) {
     if(testInput === ""){
         return "Empty";
     }else if(isNaN(Number(testInput))){
-        return "NaN";
+        return "Not a Number";
     }else{
-        return "Number";
+        return "Is a Number";
     }
    
 }
@@ -41,28 +41,30 @@ function formSubmission(document, fautlyItems, pilot, copilot, fuelLevel, cargoL
     alert("Check fields for invalid input.")
    }else{
     fautlyItems.style.visibility = "visible";
-    pilotStatus.innerHTML = `Pilot ${pilot} Ready`;
-    copilotStatus.innerHTML = `Copilot ${copilot} Ready`;
-    if(fuelLevel<10000 && cargoLevel<10000){
-        fuelStatus.innerHTML = `Fuel level too low for launch!`;
-        cargoStatus.innerHTML = `Cargo mass low enough for launch!`;
-        launchStatus.innerHTML = `Shuttle not ready for launch!`;
-        launchStatus.style.color = "red";
-    }else if(fuelLevel>10000 && cargoLevel>10000){
-        cargoStatus.innerHTML = `Cargo mass too high for launch!`;
-        fuelStatus.innerHTML = `Fuel level high enough for launch!`;
-        launchStatus.innerHTML = `Shuttle not ready for launch!`;
-        launchStatus.style.color = "red";
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+    console.log(fuelLevel);
+    console.log(cargoLevel);
+    if(fuelLevel<10000 && cargoLevel<=10000){
+        fuelStatus.innerHTML = `Fuel level too low for launch`;
+        cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+        launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
+        launchStatus.style.color = "rgb(199, 37, 78)";
+    }else if(fuelLevel>=10000 && cargoLevel>10000){
+        cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
+        fuelStatus.innerHTML = `Fuel level high enough for launch`;
+        launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
+        launchStatus.style.color = "rgb(199, 37, 78)";
     }else if(fuelLevel<10000 && cargoLevel>10000){
-        cargoStatus.innerHTML = `Cargo mass too high for launch!`;
-        fuelStatus.innerHTML = `Fuel level too low for launch!`;
-        launchStatus.innerHTML = `Shuttle not ready for launch!`;
-        launchStatus.style.color = "red";
+        cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
+        fuelStatus.innerHTML = `Fuel level too low for launch`;
+        launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
+        launchStatus.style.color = "rgb(199, 37, 78)";
     }else{
-        cargoStatus.innerHTML = `Cargo mass low enough for launch!`;
-        fuelStatus.innerHTML = `Fuel level high enough for launch!`;
-        launchStatus.innerHTML = `Shuttle ready for launch!`;
-        launchStatus.style.color = "green";
+        cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+        fuelStatus.innerHTML = `Fuel level high enough for launch`;
+        launchStatus.innerHTML = `Shuttle is Ready for Launch`;
+        launchStatus.style.color = "rgb(65, 159, 106)";
 
     }
 
@@ -75,7 +77,7 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-            return response.json();
+        return response.json();
     });
     return planetsReturned;
 }

@@ -20,7 +20,8 @@ window.addEventListener("load", function() {
 
 
    })
-
+   let list = document.getElementById("faultyItems");
+   list.style.visibility = "hidden";
    let form = this.document.querySelector("form");
    form.addEventListener("submit", function(event){
     //use class name chained with tagName, remove class x
@@ -33,14 +34,14 @@ window.addEventListener("load", function() {
         }
     }*/
     event.preventDefault();
-    let faultyItems = document.getElementById("faultyItems");
+    
     let pilot = document.querySelector("input[name=pilotName]").value;
     let copilot = document.querySelector("input[name=copilotName]").value;
     let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
     let cargoMass = document.querySelector("input[name=cargoMass]").value;
 
 
-    formSubmission(document, faultyItems, pilot, copilot, fuelLevel, cargoMass);
+    formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
    });
    
 });
