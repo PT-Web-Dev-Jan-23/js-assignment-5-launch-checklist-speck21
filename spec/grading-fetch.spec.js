@@ -63,6 +63,11 @@ describe("GRADING FETCH CALL TEST: ", function () {
 
    it("Student is fetching list of planets", async function() {
       const result = await studentFunctions.myFetch();
+      /*console.log("-------");
+      console.log(result);
+      console.log("--------");
+      console.log(planetsResponse);
+      console.log("-----------");*/
       expect(result).toEqual(planetsResponse);
    })
 
